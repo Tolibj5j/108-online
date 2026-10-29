@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: 108-online
+    runtime: node
+    plan: free
+    # One instance only: rooms live in memory.
+    numInstances: 1
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production

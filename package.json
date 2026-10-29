@@ -1,0 +1,30 @@
+{
+  "name": "108-online",
+  "version": "1.0.0",
+  "private": true,
+  "description": "108 ONLINE — real-time multiplayer traditional card game (6–A deck) with private rooms",
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "start": "node server/dist/index.js",
+    "test": "vitest run && npm run test -w client",
+    "test:server": "vitest run",
+    "test:client": "npm run test -w client",
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck -w client"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "concurrently": "^9.2.0",
+    "socket.io-client": "^4.8.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
